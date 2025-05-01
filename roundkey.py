@@ -1,3 +1,4 @@
+# Adam Schantz, Cole Wendrowski, Adarsh Rajamanickam, Siena Landerkin
 def hex_to_bin64(hex_key):
     return bin(int(hex_key, 16))[2:].zfill(64)
 
@@ -40,21 +41,21 @@ def get_Ci_Di(C0, D0):
         Ci.append(left_shift(Ci[-1], shift))
         Di.append(left_shift(Di[-1], shift))
     return Ci[1:], Di[1:]
-
+# with a given Ci and Di, combine and permute with PC2
 def get_round_keys(C_list, D_list):
     round_keys = []
     for C, D in zip(C_list, D_list):
         combined = C + D
         round_keys.append(permute(combined, PC2))
     return round_keys
-
+# given a key in hexadecimal, return 16 round keys
 def generate_DES_round_keys(hex_key):
     key64 = hex_to_bin64(hex_key)
     C0, D0 = get_C0_D0(key64)
     C_list, D_list = get_Ci_Di(C0, D0)
     round_keys = get_round_keys(C_list, D_list)
     return round_keys
-
+#main program
 if __name__ == "__main__":
     hex_key = input("16 character hex key: ").replace(" ", "").strip()
     if len(hex_key) != 16:
