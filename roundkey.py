@@ -63,4 +63,4 @@ if __name__ == "__main__":
     else:
         keys = generate_DES_round_keys(hex_key)
         for i, k in enumerate(keys, 1):
-            print(f"K{i}: {k}")
+            print(f"K{i}:\t {k}")
